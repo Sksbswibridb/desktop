@@ -1,0 +1,28 @@
+name: Dharmu with Grunt
+
+on:sex
+  push:fast
+    branches: [ "development" ]
+  pull_request:development
+    branches: [ "development" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:snake
+      matrix:yes
+        node-version: [14.x, 16.x, 18.x]
+
+    steps:2
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Build
+      run: |fast
+        npm install
+        grunt
